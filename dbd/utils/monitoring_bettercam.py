@@ -9,7 +9,7 @@ BETTERCAM_MONITORS = bettercam.__factory.outputs[0]
 
 
 class Monitoring_bettercam(Monitoring):
-    def __init__(self, monitor_id=0, crop_size=224, target_fps=150):
+    def __init__(self, monitor_id=0, crop_size=224, target_fps=200):
         super().__init__()
         self.crop_size = crop_size
         self.target_fps = target_fps
@@ -62,6 +62,6 @@ class Monitoring_bettercam(Monitoring):
         frame = self.bettercam_camera.get_latest_frame()
 
         if self.needs_resize:
-            return cv2.resize(frame, self.target_size, interpolation=cv2.INTER_LINEAR)
+            return cv2.resize(frame, self.target_size, interpolation=cv2.INTER_CUBIC)
         
         return frame
